@@ -1,3 +1,3 @@
 ﻿Console.WriteLine("Testting");
 
-Console.WriteLine("Finghdhs");
+Console.WriteLine("Ithink this is better");
