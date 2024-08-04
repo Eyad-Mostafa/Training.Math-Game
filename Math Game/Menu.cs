@@ -5,9 +5,9 @@ internal class Menu
     internal static void ShowMenu()
     {
         Console.Write("Please Enter Your Name: ");
-        var name = Console.ReadLine();
+        var name = Helpers.GetName();
         var date = DateTime.UtcNow;
-        Console.WriteLine($"Welcome {name} it's {date.AddHours(3)} and this is the Math Game, Are you ready?");
+        Console.WriteLine($"Welcome {name} it's {date.AddHours(3)} and this is the Math Game, Are you ready?\n");
         while (true)
         {
             var gameMode = Helpers.Mode();
@@ -54,8 +54,9 @@ internal class Menu
     {
         Console.Clear();
         Console.WriteLine("Please Choose number of questions");
-        var numberOfQuestions = int.Parse(Console.ReadLine());
-        return numberOfQuestions;
+        var numberOfQuestions = Console.ReadLine();
+        Helpers.ValidateResult(numberOfQuestions);
+        return int.Parse(numberOfQuestions);
     }
 
     static string ChooseGame()

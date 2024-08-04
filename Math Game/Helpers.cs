@@ -1,8 +1,13 @@
 ﻿using Math_Game.Models;
+using System.Timers;
+
 namespace Math_Game;
 
 internal class Helpers
 {
+    private static int timer = 0;
+    private static System.Timers.Timer _timer;
+
     static List<Game> gameHistory = new();
     internal static string Mode()
     {
@@ -25,12 +30,13 @@ internal class Helpers
         }
     }
 
-    internal static void AddToHistory(int score, int numberOfQuestions, GameType gameType, string gameMode)
+    internal static void AddToHistory(int score, int numberOfQuestions, GameType gameType, string gameMode, int time)
     {
         gameHistory.Add(new Game
         {
             DateTime = DateTime.UtcNow.AddHours(3),
             Score = score,
+            Time = time,
             NumberOfQuestions = numberOfQuestions,
             Type = gameType,
             GameMode = gameMode
@@ -43,10 +49,59 @@ internal class Helpers
         Console.WriteLine("History: ");
         foreach (var history in gameHistory)
         {
-            Console.WriteLine($"{history.DateTime} - {history.GameMode} - {history.Type} - {history.Score}/{history.NumberOfQuestions}");
+            Console.WriteLine($"{history.DateTime} - {history.GameMode} - {history.Type} - {history.Score}/{history.NumberOfQuestions} in {history.Time} Sec");
         }
         Console.WriteLine("------------------------------------------------");
         Console.WriteLine("Press any key to return to main menu");
         Console.ReadLine();
+    }
+
+    internal static string ValidateResult(string result)
+    {
+        while (!int.TryParse(result, out _) || String.IsNullOrEmpty(result))
+        {
+            Console.WriteLine("You Must Enter a number, Try agein");
+            result = Console.ReadLine();
+        }
+        return result;
+    }
+
+    internal static string GetName()
+    {
+        string name = Console.ReadLine();
+
+        while (string.IsNullOrEmpty(name) || String.IsNullOrWhiteSpace(name))
+        {
+            Console.WriteLine("Please Enter a valid Name");
+            name = Console.ReadLine();
+        }
+        Console.Clear();
+        return name;
+    }
+
+
+
+
+    public static void StartTimer()
+    {
+        _timer = new System.Timers.Timer(1000); // Set up the timer for 1 second
+        _timer.Elapsed += (sender, e) =>
+        {
+            int currentValue = Time();
+        };
+        //_timer.AutoReset = true;  // Timer will reset after each event
+        _timer.Enabled = true;    // Start the timer
+    }
+
+    public static void StopTimer()
+    {
+        _timer.Stop();
+        _timer.Dispose();
+    }
+
+    public static int Time()
+    {
+        timer++;
+        return timer;
     }
 }

@@ -6,6 +6,7 @@ internal class GameEngine
 {
     internal static void AdditionGame(string gameMode, int numberOfQuestions)
     {
+        Helpers.StartTimer();
         int score = 0;
         for (int i = 0; i < numberOfQuestions; i++)
         {
@@ -14,6 +15,8 @@ internal class GameEngine
             int secondNumber = numbers[1];
             Console.Write(firstNumber + " + " + secondNumber + " = ");
             var answer = Console.ReadLine();
+            answer = Helpers.ValidateResult(answer);
+
             if (int.Parse(answer) == firstNumber + secondNumber)
             {
                 Console.WriteLine("Correct answer");
@@ -26,13 +29,16 @@ internal class GameEngine
                 Console.Clear();
             }
         }
-        Helpers.AddToHistory(score, numberOfQuestions, GameType.Addition, gameMode);
+        int time = Helpers.Time();
+        Helpers.StopTimer();
+        Helpers.AddToHistory(score, numberOfQuestions, GameType.Addition, gameMode, time);
         Console.WriteLine($"Game Finished with score {score}/{numberOfQuestions}\n");
         Console.WriteLine("Press any key to return to main menu");
         Console.ReadLine();
     }
     internal static void SubtractionGame(string gameMode, int numberOfQuestions)
     {
+        Helpers.StartTimer();
         int score = 0;
         for (int i = 0; i < numberOfQuestions; i++)
         {
@@ -53,12 +59,15 @@ internal class GameEngine
                 Console.Clear();
             }
         }
-        Helpers.AddToHistory(score, numberOfQuestions, GameType.Subtraction, gameMode);
+        int time = Helpers.Time();
+        Helpers.StopTimer();
+        Helpers.AddToHistory(score, numberOfQuestions, GameType.Subtraction, gameMode, time);
         Console.WriteLine("Press any key to return to main menu");
         Console.ReadLine();
     }
     internal static void MultiplicationGame(string gameMode, int numberOfQuestions)
     {
+        Helpers.StartTimer();
         int score = 0;
         for (int i = 0; i < numberOfQuestions; i++)
         {
@@ -79,12 +88,15 @@ internal class GameEngine
                 Console.Clear();
             }
         }
-        Helpers.AddToHistory(score, numberOfQuestions, GameType.Multiplication, gameMode);
+        int time = Helpers.Time();
+        Helpers.StopTimer();
+        Helpers.AddToHistory(score, numberOfQuestions, GameType.Multiplication, gameMode, time);
         Console.WriteLine("Press any key to return to main menu");
         Console.ReadLine();
     }
     internal static void DivisionGame(string gameMode, int numberOfQuestions)
     {
+        Helpers.StartTimer();
         int score = 0;
         for (int i = 0; i < numberOfQuestions; i++)
         {
@@ -111,7 +123,9 @@ internal class GameEngine
                 Console.Clear();
             }
         }
-        Helpers.AddToHistory(score, numberOfQuestions,GameType.Division, gameMode);
+        int time = Helpers.Time();
+        Helpers.StopTimer();
+        Helpers.AddToHistory(score, numberOfQuestions,GameType.Division, gameMode, time);
         Console.WriteLine("Press any key to return to main menu");
         Console.ReadLine();
     }
