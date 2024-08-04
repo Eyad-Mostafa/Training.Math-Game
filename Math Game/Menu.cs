@@ -10,6 +10,7 @@ internal class Menu
         Console.WriteLine($"Welcome {name} it's {date.AddHours(3)} and this is the Math Game, Are you ready?");
         var gameMode = Helpers.Mode();
         var game = ChooseGame();
+        DetermineGame(game, gameMode);
 
         
     }
@@ -21,40 +22,40 @@ A - Addition
 S - Substraction
 M - Multiplication
 D - Division
-R - Random
+R - Random Game
 Q - Quit Game");
         string? operatrion = Console.ReadLine();
         return operatrion.ToLower();
     }
 
-    string ChooseOperation()
+    static void DetermineGame(string game, string mode)
     {
-        var operation = "";
-        if (operation != "a")
+        switch (game)
         {
-
+            case "a":
+                GameEngine.AdditionGame(mode);
+                break;
+            case "s":
+                GameEngine.SubtractionGame(mode);
+                break;
+            case "m":
+                GameEngine.MultiplicationGame(mode);
+                break;
+            case "d":
+                GameEngine.DivisionGame(mode);
+                break;
+            case "r":
+                string modes = "asmd";
+                DetermineGame(modes[Random.Shared.Next(0, 4)].ToString(), mode);
+                break;
+            case "q":
+                Console.WriteLine("Good Bye");
+                Environment.Exit(1);
+                break;
+            default:
+                Console.WriteLine("Invalid character, Please try again");
+                DetermineGame(ChooseGame(), mode);
+                break;
         }
-        else if (operation == "s")
-        {
-
-        }
-        else if (operation == "m")
-        {
-
-        }
-        else if (operation == "d")
-        {
-
-        }
-        else if (operation == "q")
-        {
-
-        }
-        else
-        {
-            Console.WriteLine("Invalid operation, try again");
-
-        }
-        return operation;
     }
 }
