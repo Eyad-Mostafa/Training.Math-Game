@@ -12,7 +12,7 @@ internal class Helpers
     internal static string Mode()
     {
         Console.WriteLine("Choose Game Mode :");
-        Console.WriteLine("Easy (Default) - Medium - Hard");
+        Console.WriteLine("Easy - Medium - Hard");
         string? gameMode = Console.ReadLine();
         
         switch (gameMode.ToLower())
@@ -84,13 +84,12 @@ internal class Helpers
 
     public static void StartTimer()
     {
-        _timer = new System.Timers.Timer(1000); // Set up the timer for 1 second
+        _timer = new System.Timers.Timer(1000);
         _timer.Elapsed += (sender, e) =>
         {
             int currentValue = Time();
         };
-        //_timer.AutoReset = true;  // Timer will reset after each event
-        _timer.Enabled = true;    // Start the timer
+        _timer.Enabled = true;
     }
 
     public static void StopTimer()

@@ -55,7 +55,7 @@ internal class Menu
         Console.Clear();
         Console.WriteLine("Please Choose number of questions");
         var numberOfQuestions = Console.ReadLine();
-        Helpers.ValidateResult(numberOfQuestions);
+        numberOfQuestions = Helpers.ValidateResult(numberOfQuestions);
         return int.Parse(numberOfQuestions);
     }
 
