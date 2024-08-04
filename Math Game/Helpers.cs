@@ -61,14 +61,14 @@ internal class Helpers
         while (!int.TryParse(result, out _) || String.IsNullOrEmpty(result))
         {
             Console.WriteLine("You Must Enter a number, Try agein");
-            result = Console.ReadLine();
+            result = Console.ReadLine().Trim();
         }
         return result;
     }
 
     internal static string GetName()
     {
-        string name = Console.ReadLine();
+        string name = Console.ReadLine().Trim();
 
         while (string.IsNullOrEmpty(name) || String.IsNullOrWhiteSpace(name))
         {

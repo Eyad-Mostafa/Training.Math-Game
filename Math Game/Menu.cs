@@ -54,7 +54,7 @@ internal class Menu
     {
         Console.Clear();
         Console.WriteLine("Please Choose number of questions");
-        var numberOfQuestions = Console.ReadLine();
+        var numberOfQuestions = Console.ReadLine().Trim();
         numberOfQuestions = Helpers.ValidateResult(numberOfQuestions);
         return int.Parse(numberOfQuestions);
     }
@@ -69,7 +69,7 @@ M - Multiplication
 D - Division
 R - Random Game
 Q - Quit Game");
-        string? operatrion = Console.ReadLine();
+        string? operatrion = Console.ReadLine().Trim();
         return operatrion.ToLower();
     }
 

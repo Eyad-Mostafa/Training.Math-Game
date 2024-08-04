@@ -14,7 +14,7 @@ internal class GameEngine
             int firstNumber = numbers[0];
             int secondNumber = numbers[1];
             Console.Write(firstNumber + " + " + secondNumber + " = ");
-            var answer = Console.ReadLine();
+            var answer = Console.ReadLine().Trim();
             answer = Helpers.ValidateResult(answer);
 
             if (int.Parse(answer) == firstNumber + secondNumber)
@@ -46,7 +46,8 @@ internal class GameEngine
             int firstNumber = numbers[0];
             int secondNumber = numbers[1];
             Console.Write(firstNumber + " - " + secondNumber + " = ");
-            var answer = Console.ReadLine();
+            var answer = Console.ReadLine().Trim();
+            answer = Helpers.ValidateResult(answer);
             if (int.Parse(answer) == firstNumber - secondNumber)
             {
                 Console.WriteLine("Correct answer");
@@ -75,7 +76,8 @@ internal class GameEngine
             int firstNumber = numbers[0];
             int secondNumber = numbers[1];
             Console.Write(firstNumber + " x " + secondNumber + " = ");
-            var answer = Console.ReadLine();
+            var answer = Console.ReadLine().Trim();
+            answer = Helpers.ValidateResult(answer);
             if (int.Parse(answer) == firstNumber * secondNumber)
             {
                 Console.WriteLine("Correct answer");
@@ -110,7 +112,8 @@ internal class GameEngine
             } while (firstNumber % secondNumber != 0 || firstNumber == secondNumber);
 
             Console.Write(firstNumber + " / " + secondNumber + " = ");
-            var answer = Console.ReadLine();
+            var answer = Console.ReadLine().Trim();
+            answer = Helpers.ValidateResult(answer);
             if (int.Parse(answer) == firstNumber / secondNumber)
             {
                 Console.WriteLine("Correct answer");
