@@ -8,41 +8,32 @@ internal class Menu
         var name = Console.ReadLine();
         var date = DateTime.UtcNow;
         Console.WriteLine($"Welcome {name} it's {date.AddHours(3)} and this is the Math Game, Are you ready?");
-        var gameMode = Helpers.Mode();
-        var game = ChooseGame();
-        DetermineGame(game, gameMode);
-
-        
-    }
-
-    static string ChooseGame()
-    {
-        Console.WriteLine(@"Please Choose GAME :
-A - Addition
-S - Substraction
-M - Multiplication
-D - Division
-R - Random Game
-Q - Quit Game");
-        string? operatrion = Console.ReadLine();
-        return operatrion.ToLower();
+        while (true)
+        {
+            var gameMode = Helpers.Mode();
+            var game = ChooseGame();
+            DetermineGame(game, gameMode);
+        }
     }
 
     static void DetermineGame(string game, string mode)
     {
         switch (game)
         {
+            case "v":
+                Helpers.ShowHistory();
+                break;
             case "a":
-                GameEngine.AdditionGame(mode);
+                GameEngine.AdditionGame(mode, ChooseNumberOfWuestions());
                 break;
             case "s":
-                GameEngine.SubtractionGame(mode);
+                GameEngine.SubtractionGame(mode, ChooseNumberOfWuestions());
                 break;
             case "m":
-                GameEngine.MultiplicationGame(mode);
+                GameEngine.MultiplicationGame(mode, ChooseNumberOfWuestions());
                 break;
             case "d":
-                GameEngine.DivisionGame(mode);
+                GameEngine.DivisionGame(mode, ChooseNumberOfWuestions());
                 break;
             case "r":
                 string modes = "asmd";
@@ -58,4 +49,27 @@ Q - Quit Game");
                 break;
         }
     }
+
+    private static int ChooseNumberOfWuestions()
+    {
+        Console.Clear();
+        Console.WriteLine("Please Choose number of questions");
+        var numberOfQuestions = int.Parse(Console.ReadLine());
+        return numberOfQuestions;
+    }
+
+    static string ChooseGame()
+    {
+        Console.WriteLine(@"Please Choose GAME :
+V - Show History
+A - Addition
+S - Substraction
+M - Multiplication
+D - Division
+R - Random Game
+Q - Quit Game");
+        string? operatrion = Console.ReadLine();
+        return operatrion.ToLower();
+    }
+
 }
